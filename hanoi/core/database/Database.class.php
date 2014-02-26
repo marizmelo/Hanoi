@@ -42,7 +42,6 @@ class Database extends Debug{
 		<br>
 		<b>type:</b>		DATABASE Class <br>
 		<b>author:</b>		Mariz Melo <br>		
-		<b>released:</b>	08-25-2008 <br>
 		<b>description:</b>	<i>"Provide methods to connect applications with databases"</i> <br>
 		<br>
 		<b>instructions:</b><br>
