@@ -1,11 +1,11 @@
 Hanoi
------
+=====
 
 Hanoi is a simplistic yet powerful PHP framework
 
 
 Installation
-============
+------------
 
 Place the folder **hanoi/** on your root project directory and on your **index.php** include the required library file.
 
@@ -13,7 +13,7 @@ Place the folder **hanoi/** on your root project directory and on your **index.p
 
 
 How to use
-==========
+----------
 
 After complete the installation step you can start using Hanoi simple by creating new objects using the available classes inside **/hanoi/core** folder.
 
@@ -24,20 +24,20 @@ Example:
 
 
 Version
-=======
+-------
 
 v0.1b
 
 
 Author
-======
+------
 
 Mariz Melo
 mm@emoriz.com
 
 
 License
-=======
+-------
 
 Hanoi is open-source, license can be found on this link below:
 [http://creativecommons.org/licenses/by-sa/3.0/](http://creativecommons.org/licenses/by-sa/3.0/)
