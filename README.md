@@ -19,8 +19,10 @@ After complete the installation step you can start using Hanoi simple by creatin
 
 Example:
 
+```php
     // CONNECTION WITH DATABASE
     $data = new Database(1,1); // 1,1 are optional arguments, the first one initiates the embedded debug system, and the second activate PHP default debug system
+ ```
 
 
 Version
