@@ -5,11 +5,12 @@
 	@release: 02/24/2014
 	@url: http://github.com/marizmelo/hanoi
 */
-	include_once('/hanoi/hanoi.php');
+	include_once('hanoi/hanoi.php');
 ?>
 <html>
 <head>
 	<title>Hanoi is a simplistic yet powerful PHP framework</title>
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
 
