@@ -9,7 +9,7 @@ Installation
 
 Place the folder **hanoi/** on your root project directory and on your **index.php** include the required library file.
 
-    include('/hanoi/core/hanoi.php');
+    include('hanoi/core/hanoi.php');
 
 
 How to use
