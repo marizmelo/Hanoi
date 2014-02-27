@@ -16,11 +16,8 @@ class Configure extends Debug{
 								'timezone'=>'America/Los_Angeles');
 
 
-
-
 	/*INITILIZES CLASS WITH ACCESS TO DEBUG SYSTEM*/
 	function __construct($debug=0, $debugphp=0){
-		
 		if($debug){
 			$this->debugSTART($debugphp);
 			$this->debugMESSAGE('S', 'CONFIGURE object created');
@@ -30,15 +27,11 @@ class Configure extends Debug{
 		date_default_timezone_set($this->class_att['timezone']);
 		
 		return '';
-		
 	}
-
 
 
 	/*HELP instructions*/
 	function __toString(){
-		
-		
 		$HELP  = '	<br />';
 		$HELP .= '	<b>type:</b>		CONFIGURE Class <br />';
 		$HELP .= '	<b>author:</b>		Mariz Melo <br />';
@@ -59,10 +52,7 @@ class Configure extends Debug{
 		
 		$this->debugMESSAGE('H', $HELP);
 		return '';
-		
-	}//end:HELP
-	
-	
+	}
 	
 	
 	/*GETS and SETS for attributes array*/
@@ -77,13 +67,10 @@ class Configure extends Debug{
 	}
 	
 	
-	
 	//Memory that will be used by the system
 	function configureMEMORY($memory = 10)
 	{
-		
-		ini_set('memory_limit', $memory.'M');	//initialize memory available (default 10mb)
-		
+		ini_set('memory_limit', $memory.'M');	//initialize memory available (default 10mb)	
 	}
 	
 
