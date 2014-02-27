@@ -10,21 +10,34 @@ Installation
 Place the folder **hanoi/** on your root project directory and on your **index.php** include the required library file.
 
 ```php
-include('hanoi/core/hanoi.php');
+<?php
+	include('hanoi/core/hanoi.php');
+?>
 ```
 
+**OBS: this code must be place before any HTML content on the page.**
 
-How to use
-----------
 
-After complete the installation step you can start using Hanoi simple by creating new objects using the available classes inside **/hanoi/core** folder.
+Configure
+---------
 
-Example:
+Hanoi comes with a simple configuration module to activate it do the following:
 
 ```php
-// CONNECTION WITH DATABASE
-$data = new Database(1,1); // 1,1 are optional arguments, the first one initiates the embedded debug system, and the second activate PHP default debug system
- ```
+$config = new Configure(1,1); // 1 - Hanoi debug message, 1 - PHP debug messages
+```
+
+Get Help
+--------
+
+Does not know what to do with a module, no problem Hanoi can help you. 
+
+Create a new module variable and ask for help:
+
+```php
+$database = new Database(); 
+echo $database; // will display usage help instruction on your page
+```
 
 
 Version

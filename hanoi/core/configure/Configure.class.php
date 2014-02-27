@@ -35,7 +35,6 @@ class Configure extends Debug{
 		$HELP  = '	<br />';
 		$HELP .= '	<b>type:</b>		CONFIGURE Class <br />';
 		$HELP .= '	<b>author:</b>		Mariz Melo <br />';
-		$HELP .= '	<b>released:</b>	11-22-2010 <br />';
 		$HELP .= '	<b>description:</b>	<i>"Default variables and methods for the website/system"</i> <br />';
 		$HELP .= '	<br />';
 		$HELP .= '	<b>instructions:</b><br />';
