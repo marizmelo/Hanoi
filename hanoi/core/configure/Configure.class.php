@@ -11,7 +11,7 @@ class Configure extends Debug{
 
 	/*@attributes*/
 	/*@timezones : http://www.php.net/manual/en/timezones.php*/
-	private $class_att = array(	'title'=>'Hanoi', 
+	private $class_att = array(	'title'=>'Hanoi is a simplistic yet powerful PHP framework', 
 								'lang'=>'en-US',
 								'timezone'=>'America/Los_Angeles');
 

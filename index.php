@@ -6,10 +6,12 @@
 	@url: http://github.com/marizmelo/hanoi
 */
 	include_once('hanoi/hanoi.php');
+
+	$config = new Configure(1,1);
 ?>
 <html>
 <head>
-	<title>Hanoi is a simplistic yet powerful PHP framework</title>
+	<title><?=$config->title?></title>
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
