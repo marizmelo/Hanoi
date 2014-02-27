@@ -9,6 +9,8 @@
 
 	$config = new Configure(1,1); // check hanoi/core/Configure/Configure.class.php
 
+	echo $config;
+
 	$track = new Track(1,1);
 
 ?>
@@ -18,6 +20,6 @@
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-	<h1>Welcome to Hanoi a simplistic yet powerful PHP Framework</h1>
+	<?=$track->debugMESSAGE('H', 'THANK YOU FOR USING HANOI, THE SYSTEM IS READY TO USE!')?>
 </body>
 </html>
