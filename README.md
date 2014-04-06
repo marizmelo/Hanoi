@@ -36,7 +36,7 @@ Create a new module variable and ask for help:
 
 ```php
 $database = new Database(); 
-echo $database; // will display usage help instruction on your page
+echo $database; // will display usage help instructions on your page
 ```
 
 

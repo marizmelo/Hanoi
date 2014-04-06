@@ -15,7 +15,7 @@ class Security extends Debug{
 		
 		if($debug){
 			$this->debugSTART($debugphp);
-			$this->debugMESSAGE('S', 'DATABASE object created');
+			$this->debugMESSAGE('S', 'SECURITY object created');
 		}
 		return '';
 		
