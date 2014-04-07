@@ -91,7 +91,7 @@ class Database extends Debug{
 									$this->debugMESSAGE('E', 'mysql not installed');
 									exit();
 								}//verifies if mysql module is installed on the system
-								include_once('./xcore/php/Database/db_mysql.php');
+								include_once('./hanoi/core/Database/db_mysql.php');
 								break;
 								
 				/*case 'oracle':	include_once('./xcore/php/Database/db_oracle.php');
