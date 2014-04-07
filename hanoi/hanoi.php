@@ -5,7 +5,7 @@
 	function __autoload($class)
 	{
 		//hold default path for classes on the hanoi system
-		$classfile = "hanoi/core/{$class}/{$class}.class.php";
+		$classfile = "hanoi/classes/{$class}/{$class}.class.php";
 		
 		/*Just automatic loads the class where its exist on 
 		  the system or was not loaded before, util to load
