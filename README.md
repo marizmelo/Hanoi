@@ -1,6 +1,8 @@
 Hanoi
 =====
 
+![emoriz preview image](http://emoriz.com/github/hanoi.jpg)
+
 Hanoi is a simplistic yet powerful PHP framework
 
 
