@@ -23,7 +23,7 @@ class Configure extends Debug{
 			$this->debugMESSAGE('S', 'CONFIGURE object created');
 		}
 		
-		$this->debugMESSAGE('S', "TIMEZONE : '{$this->class_att['timezone']}'");
+		$this->debugMESSAGE('S', "TIMEZONE : {$this->class_att['timezone']}");
 		date_default_timezone_set($this->class_att['timezone']);
 		
 		return '';
@@ -32,22 +32,20 @@ class Configure extends Debug{
 
 	/*HELP instructions*/
 	function __toString(){
-		$HELP  = '	<br />';
-		$HELP .= '	<b>type:</b>		CONFIGURE Class <br />';
-		$HELP .= '	<b>author:</b>		Mariz Melo <br />';
-		$HELP .= '	<b>description:</b>	<i>"Default variables and methods for the website/system"</i> <br />';
-		$HELP .= '	<br />';
-		$HELP .= '	<b>instructions:</b><br />';
-		$HELP .= '		VARIABLES:<br />';
-		$HELP .= '			<b>title:</b> Hold website/system title name<br />';
-		$HELP .= '			<b>lang:</b> <a href="http://www.w3schools.com/tags/ref_language_codes.asp">ISO 639</a> + \'-\' + <a href="http://www.iso.org/iso/english_country_names_and_code_elements">ISO 3166-1</a> codes for language code (default: en-US)<br />';
-		$HELP .= '			//example :  <br />';
-		$HELP .= '			$conf = new Configure(); <br />$conf->title = "My awesome project"; //overwrite the default value <br />echo $conf->title;<br />';
-		$HELP .= '<br />';
-		$HELP .= '		METHOD: <b>configureMEMORY</b>( (integer) memory amount ) <br />';
-		$HELP .= '			//Memory that PHP can have access to it, useful for upload files for example. Call only if you need.<br />';
-		$HELP .= '			ex: $conf->configureMEMORY(30); //will allocat 30mb, without value the default is 10mb<br />';
-		$HELP .= '<br />';
+		$HELP = 'type: CONFIGURE Class\n';
+		$HELP .= 'author:	Mariz Melo\n';
+		$HELP .= 'description: "Default variables and methods for the website/system"\n\n';
+		$HELP .= 'instructions:\n\n';
+		$HELP .= '\tVariables:\n\n';
+		$HELP .= '\ttitle: Hold website/system title name\n';
+		$HELP .= '\tlang: ISO 639 - ISO 3166-1 codes for language code (default: en-US)\n\n';
+		$HELP .= '\texample:\n\n';
+		$HELP .= '\t\t$conf = new Configure();\n';
+		$HELP .= '\t\t$conf->title = "My awesome project"; //overwrite the default value\n';
+		$HELP .= '\t\techo $conf->title;\n\n';
+		$HELP .= '\t\tMETHOD: configureMEMORY( (integer) memory amount )\n';
+		$HELP .= '\t\t//Memory that PHP can have access to it, useful for upload files for example. \n\t\t//Call only if you need.\n\n';
+		$HELP .= '\t\tex: $conf->configureMEMORY(30); //allocate 30mb, default is 10mb';
 		
 		$this->debugMESSAGE('H', $HELP);
 		return '';
