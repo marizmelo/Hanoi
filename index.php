@@ -1,6 +1,6 @@
 <?php
 /*
-	@title: Hanoi is a simplistic yet powerful PHP framework
+	@title: Hanoi is a simple yet powerful PHP framework
 	@author: Mariz Melo
 	@release: 02/24/2014
 	@url: http://github.com/marizmelo/hanoi
@@ -8,9 +8,6 @@
 	include_once('hanoi/hanoi.php');
 
 	$config = new Configure(1,1); // check hanoi/core/Configure/Configure.class.php
-
-	echo $config;
-
 	$track = new Track(1,1);
 
 ?>
