@@ -38,34 +38,29 @@ class Database extends Debug{
 	function __toString(){
 
 		//copyrights, don't change the credits
-		$HELP  = '
-		<br>
-		<b>type:</b>		DATABASE Class <br>
-		<b>author:</b>		Mariz Melo <br>		
-		<b>description:</b>	<i>"Provide methods to connect applications with databases"</i> <br>
-		<br>
-		<b>instructions:</b><br>
-		METHOD: <b>databaseCONNECT</b>( (string) database <b>address</b>, (string) database <b>username</b>, (string) database <b>password</b>, (string) database <b>name</b>, (string) database <b>type</b> - mysql is default )<br>
-		//connect to database system<br>
-		ex :  $database->databaseCONNECT( "localhost", "userlogin", "userpass", "mydata", "database" );<br>
-		ex2: $database->databaseCONNECT( "localhost", "userlogin", "userpass", "mydata" ); // in case of be using mysql you don not need declare database type <br>
-		<br>
-		METHOD: <b>databaseSELECT</b>( (string) SQL select query ) <br>
-		//return an array with results from a SELECT query or 0 (if did not found anything)<br>
-		ex: $myselect = $database->databaseSELECT("SELECT * FROM tablename");<br>
-		<br>
-		METHOD: <b>databaseMODIFY</b>() <br>
-		//used for INSERT, UPDATE, or DELETE queries. Just return the value 0 if could not executed the request.<br>
-		ex : $myinsert = $database->databaseMODIFY("INSERT INTO tablename (column) VALUES (value) WHERE column = some_value");<br>
-		ex2: $myupdate = $database->databaseMODIFY("UPDATE tablename SET column = value WHERE column = value2");<br>
-		ex3: $mydelete = $database->databaseMODIFY("DELETE FROM tablename WHERE column = value");<br>
-		';//end:HELP
+		$HELP  = 'type: DATABASE Class\n';
+		$HELP .= 'author:	Mariz Melo\n';
+		$HELP .= 'description: "Provide methods to connect applications with databases"\n';
+		$HELP .= 'instructions:\n\n';
+		$HELP .= 'METHOD: databaseCONNECT( \n\t\t(string) database address, \n\t\t(string) database username, \n\t\t(string) database password, \n\t\t(string) database name, \n\t\t(string) database type - mysql is default )\n';
+		$HELP .= '\n//connect to database system\n';
+		$HELP .= 'ex :  $database->databaseCONNECT( "localhost", "userlogin", "userpass", "mydata", "database" );\n';
+		$HELP .= '\nex2: $database->databaseCONNECT( "localhost", "userlogin", "userpass", "mydata" );\n'; 
+		$HELP .= '// in case of be using mysql you don not need declare database type\n';
+		$HELP .= '\nMETHOD: databaseSELECT( (string) SQL select query )\n';
+		$HELP .= '//return an array with results from a SELECT query or 0 (if did not found anything)\n';
+		$HELP .= 'ex: $myselect = $database->databaseSELECT("SELECT * FROM tablename");\n';
+		$HELP .= '\nMETHOD: databaseMODIFY()\n';
+		$HELP .= '//used for INSERT, UPDATE, or DELETE queries. Just return the value 0 if could not executed the request.\n';
+		$HELP .= '\nex : $myinsert = $database->databaseMODIFY("INSERT INTO tablename (column) VALUES (value) WHERE column = some_value");\n';
+		$HELP .= '\nex2: $myupdate = $database->databaseMODIFY("UPDATE tablename SET column = value WHERE column = value2");\n';
+		$HELP .= '\nex3: $mydelete = $database->databaseMODIFY("DELETE FROM tablename WHERE column = value");\n';
 
 		//if the debug system is activated - see: ./xcore/php/Debug/Debug.class.php
 		$this->debugMESSAGE('H', $HELP); //show help message
 		
 		return '';
-		
+
 	}	
 	
 	
@@ -117,7 +112,7 @@ class Database extends Debug{
 			
 			//DEBUG		
 			if($this->dbconnection)
-				$this->debugMESSAGE('S', 'Database successfuly <b>connected</b>!');
+				$this->debugMESSAGE('S', 'Database successfuly connected!');
 			
 			
 			
@@ -151,11 +146,11 @@ class Database extends Debug{
 			
 			//db_disconnect($this->dbconnection);	//disconnect from the database	//no longer necessary (but kept the disconnect message)
 			
-			$this->debugMESSAGE('S', 'Database successfuly <b>disconnected</b>!<br>'); //show debug message
+			$this->debugMESSAGE('S', 'Database successfuly disconnected!'); //show debug message
 				
 		}else{
 			
-			$this->debugMESSAGE('E', 'No database connection found!<br>');	//show debug message
+			$this->debugMESSAGE('E', 'No database connection found!');	//show debug message
 			
 		}
 		
@@ -182,7 +177,7 @@ class Database extends Debug{
 				if( isset($myquery) ){
 						
 					//debug system
-					$this->debugMESSAGE('S', "Database request <b>executed</b>!<br><i>\"{$sql}\"</i>");  //show debug message
+					$this->debugMESSAGE('S', "Database request executed</b>! \"{$sql}\"");  //show debug message
 		
 					
 					//start: if did found any record

@@ -32,7 +32,7 @@ class Configure extends Debug{
 
 	/*HELP instructions*/
 	function __toString(){
-		$HELP = 'type: CONFIGURE Class\n';
+		$HELP  = 'type: CONFIGURE Class\n';
 		$HELP .= 'author:	Mariz Melo\n';
 		$HELP .= 'description: "Default variables and methods for the website/system"\n\n';
 		$HELP .= 'instructions:\n\n';
