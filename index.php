@@ -8,7 +8,11 @@
 	include_once('hanoi/hanoi.php');
 
 	$config = new Configure(1,1); // check hanoi/core/Configure/Configure.class.php
+	echo $config;
 	$track = new Track(1,1);
+
+	$database = new Database(1);
+	echo $database;
 
 ?>
 <html>

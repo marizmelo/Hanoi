@@ -27,17 +27,17 @@ class Security extends Debug{
 	function __toString(){
 	
 		//copyrights, don't change the credits
-		$HELP  = 'type: SECURITY Class\n';
-		$HELP .= 'author: Mariz Melo\n';
-		$HELP .= 'released:	10-03-2010\n';
-		$HELP .= 'description: Provide methods to control SESSIONS and security on the application/site\n';
-		$HELP .= 'REQUIREMENTS\n';
-		$HELP .= '//crate a instance of the class Security\n';
-		$HELP .= 'ex: $instance_var = new Security();\n';
-		$HELP .= 'METHOD: securitySETSESSION( (string) session name/id, (bool) 1 - close session, (int) minutes before close session )\n';
-		$HELP .= '//initialize or destroy the session passed as argument\n';
-		$HELP .= 'ex1: $instance_var->securitySETSESSION("sessionName"); //starting the session\n';
-		$HELP .= 'ex2: $instance_var->securitySETSESSION("sessionName", 1); //finishing the session\n';
+		$HELP  = 'type: SECURITY Class\n'
+		. 'author: Mariz Melo\n'
+		. 'released:	10-03-2010\n'
+		. 'description: Provide methods to control SESSIONS and security on the application/site\n'
+		. 'REQUIREMENTS\n'
+		. '//crate a instance of the class Security\n'
+		. 'ex: $instance_var = new Security();\n'
+		. 'METHOD: securitySETSESSION( (string) session name/id, (bool) 1 - close session, (int) minutes before close session )\n'
+		. '//initialize or destroy the session passed as argument\n'
+		. 'ex1: $instance_var->securitySETSESSION("sessionName"); //starting the session\n'
+		. 'ex2: $instance_var->securitySETSESSION("sessionName", 1); //finishing the session\n';
 		
 		
 		//if the debug system is activated - see: hanoi/core/debug/Debug.class.php

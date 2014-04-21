@@ -32,20 +32,20 @@ class Configure extends Debug{
 
 	/*HELP instructions*/
 	function __toString(){
-		$HELP  = 'type: CONFIGURE Class\n';
-		$HELP .= 'author:	Mariz Melo\n';
-		$HELP .= 'description: "Default variables and methods for the website/system"\n\n';
-		$HELP .= 'instructions:\n\n';
-		$HELP .= '\tVariables:\n\n';
-		$HELP .= '\ttitle: Hold website/system title name\n';
-		$HELP .= '\tlang: ISO 639 - ISO 3166-1 codes for language code (default: en-US)\n\n';
-		$HELP .= '\texample:\n\n';
-		$HELP .= '\t\t$conf = new Configure();\n';
-		$HELP .= '\t\t$conf->title = "My awesome project"; //overwrite the default value\n';
-		$HELP .= '\t\techo $conf->title;\n\n';
-		$HELP .= '\t\tMETHOD: configureMEMORY( (integer) memory amount )\n';
-		$HELP .= '\t\t//Memory that PHP can have access to it, useful for upload files for example. \n\t\t//Call only if you need.\n\n';
-		$HELP .= '\t\tex: $conf->configureMEMORY(30); //allocate 30mb, default is 10mb';
+		$HELP  = 'type: CONFIGURE Class\n'
+		. 'author:	Mariz Melo\n'
+		. 'description: "Default variables and methods for the website/system"\n\n'
+		. 'instructions:\n\n'
+		. '\tVariables:\n\n'
+		. '\ttitle: Hold website/system title name\n'
+		. '\tlang: ISO 639 - ISO 3166-1 codes for language code (default: en-US)\n\n'
+		. '\texample:\n\n'
+		. '\t\t$conf = new Configure();\n'
+		. '\t\t$conf->title = "My awesome project"; //overwrite the default value\n'
+		. '\t\techo $conf->title;\n\n'
+		. '\t\tMETHOD: configureMEMORY( (integer) memory amount )\n'
+		. '\t\t//Memory that PHP can have access to it, useful for upload files for example. \n\t\t//Call only if you need.\n\n'
+		. '\t\tex: $conf->configureMEMORY(30); //allocate 30mb, default is 10mb';
 		
 		$this->debugMESSAGE('H', $HELP);
 		return '';

@@ -38,23 +38,23 @@ class Database extends Debug{
 	function __toString(){
 
 		//copyrights, don't change the credits
-		$HELP  = 'type: DATABASE Class\n';
-		$HELP .= 'author:	Mariz Melo\n';
-		$HELP .= 'description: "Provide methods to connect applications with databases"\n';
-		$HELP .= 'instructions:\n\n';
-		$HELP .= 'METHOD: databaseCONNECT( \n\t\t(string) database address, \n\t\t(string) database username, \n\t\t(string) database password, \n\t\t(string) database name, \n\t\t(string) database type - mysql is default )\n';
-		$HELP .= '\n//connect to database system\n';
-		$HELP .= 'ex :  $database->databaseCONNECT( "localhost", "userlogin", "userpass", "mydata", "database" );\n';
-		$HELP .= '\nex2: $database->databaseCONNECT( "localhost", "userlogin", "userpass", "mydata" );\n'; 
-		$HELP .= '// in case of be using mysql you don not need declare database type\n';
-		$HELP .= '\nMETHOD: databaseSELECT( (string) SQL select query )\n';
-		$HELP .= '//return an array with results from a SELECT query or 0 (if did not found anything)\n';
-		$HELP .= 'ex: $myselect = $database->databaseSELECT("SELECT * FROM tablename");\n';
-		$HELP .= '\nMETHOD: databaseMODIFY()\n';
-		$HELP .= '//used for INSERT, UPDATE, or DELETE queries. Just return the value 0 if could not executed the request.\n';
-		$HELP .= '\nex : $myinsert = $database->databaseMODIFY("INSERT INTO tablename (column) VALUES (value) WHERE column = some_value");\n';
-		$HELP .= '\nex2: $myupdate = $database->databaseMODIFY("UPDATE tablename SET column = value WHERE column = value2");\n';
-		$HELP .= '\nex3: $mydelete = $database->databaseMODIFY("DELETE FROM tablename WHERE column = value");\n';
+		$HELP  = 'type: DATABASE Class\n'
+		. 'author:	Mariz Melo\n'
+		. 'description: "Provide methods to connect applications with databases"\n'
+		. 'instructions:\n\n'
+		. 'METHOD: databaseCONNECT( \n\t\t(string) database address, \n\t\t(string) database username, \n\t\t(string) database password, \n\t\t(string) database name, \n\t\t(string) database type - mysql is default )\n'
+		. '\n//connect to database system\n'
+		. 'ex :  $database->databaseCONNECT( "localhost", "userlogin", "userpass", "mydata", "database" );\n'
+		. '\nex2: $database->databaseCONNECT( "localhost", "userlogin", "userpass", "mydata" );\n'
+		. '// in case of be using mysql you don not need declare database type\n'
+		. '\nMETHOD: databaseSELECT( (string) SQL select query )\n'
+		. '//return an array with results from a SELECT query or 0 (if did not found anything)\n'
+		. 'ex: $myselect = $database->databaseSELECT("SELECT * FROM tablename");\n'
+		. '\nMETHOD: databaseMODIFY()\n'
+		. '//used for INSERT, UPDATE, or DELETE queries. Just return the value 0 if could not executed the request.\n'
+		. '\nex : $myinsert = $database->databaseMODIFY("INSERT INTO tablename (column) VALUES (value) WHERE column = some_value");\n'
+		. '\nex2: $myupdate = $database->databaseMODIFY("UPDATE tablename SET column = value WHERE column = value2");\n'
+		. '\nex3: $mydelete = $database->databaseMODIFY("DELETE FROM tablename WHERE column = value");\n';
 
 		//if the debug system is activated - see: ./xcore/php/Debug/Debug.class.php
 		$this->debugMESSAGE('H', $HELP); //show help message

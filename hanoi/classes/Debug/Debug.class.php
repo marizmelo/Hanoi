@@ -26,13 +26,13 @@ abstract class Debug{
 	
 	public function superHelp(){	
 	
-		$HELP  = 'type: DEBUG "abstract" Class\n';
-		$HELP .= 'author: Mariz Melo\n';
-		$HELP .= 'released: 10-11-2010\n';
-		$HELP .= 'description: "Provide methods to control DEBUG system messages"';
-		$HELP .= 'METHODS: debugSTART( (int) 1 ) //just set 1 if want to see the PHP messages';
-		$HELP .= 'ex: $instance_var->debugSTART(); //only the system messages';
-		$HELP .= 'ex: $instance_var->debugSTART(); //initialize only the system messages';
+		$HELP  = 'type: DEBUG "abstract" Class\n'
+		. 'author: Mariz Melo\n'
+		. 'released: 10-11-2010\n'
+		. 'description: "Provide methods to control DEBUG system messages"'
+		. 'METHODS: debugSTART( (int) 1 ) //just set 1 if want to see the PHP messages'
+		. 'ex: $instance_var->debugSTART(); //only the system messages'
+		. 'ex: $instance_var->debugSTART(); //initialize only the system messages';
 		
 		
 		$this->debugMESSAGE('H', $HELP); //show help message
