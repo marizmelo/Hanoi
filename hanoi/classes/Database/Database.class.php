@@ -7,33 +7,28 @@
 
 class Database extends Debug{
 	
-	//attributes
+	//ATTRIBUTES
 	private $url;
 	private $user;
 	private $pass;
 	private $database;
 	private $sgdb;
 	private $dbconnection;	//system variable
-
+	public static $persistent = 0; //determine if connection should be persistent or not
 
 
 	/*INITILIZES CLASS WITH ACCESS TO DEBUG SYSTEM*/
 	function __construct($debug=0, $debugphp=0){
-		
 		if($debug){
 			$this->debugSTART($debugphp);
 			$this->debugMESSAGE('S', 'DATABASE object created');
 		}
 		return '';
-		
 	}//__construct
 
 
-
-
-	//help about how to use the class
+	//METHOD: help about how to use the class
 	function __toString(){
-
 		//copyrights, don't change the credits
 		$HELP  = 'type: DATABASE Class\n'
 		. 'author:	Mariz Melo\n'
@@ -52,17 +47,12 @@ class Database extends Debug{
 		. '\nex : $myinsert = $database->databaseMODIFY("INSERT INTO tablename (column) VALUES (value) WHERE column = some_value");\n'
 		. '\nex2: $myupdate = $database->databaseMODIFY("UPDATE tablename SET column = value WHERE column = value2");\n'
 		. '\nex3: $mydelete = $database->databaseMODIFY("DELETE FROM tablename WHERE column = value");\n';
-
 		//if the debug system is activated - see: ./xcore/php/Debug/Debug.class.php
 		$this->debugMESSAGE('H', $HELP); //show help message
-		
 		return '';
-
 	}	
 	
-	
-
-	//Stabilish connection with database server.
+	//METHOD: Stabilish connection with database server.
 	function databaseCONNECT($url, $user, $pass, $database, $sgdb='mysql'){	
 
 		//check if the arguments come with values
@@ -102,32 +92,23 @@ class Database extends Debug{
 								break;*/
 			}//switch
 
-
 			try {
-    		$conn = new PDO($dns, $db['user'], $db['pass']);
+    		$this->dbconnection = new PDO($dns, $db['user'], $db['pass']);
     		$this->debugMESSAGE('S', 'Database successfuly connected!');
-    		$this->dbconnection = 1;
-    		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    		$this->dbconnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			} catch(PDOException $e) {
 			    $this->debugMESSAGE('E', "Could not connect with Database! ".$e->getMessage());
 					die();
 			}
-			
-			
 		}else{
-			
 			//DEBUG
 			$this->debugMESSAGE('E', "Missing REQUIRED arguments. See INSTRUCTIONS BELOW for more details:");
-			echo $this; //call the HELP method
-			
-				
+			echo $this; //call the HELP method	
 		}
 		
 	}
 	
-	
-
-	//Free query used in query.
+	//METHOD: Free query used in query.
 	function databaseFREE($query){
 		
 		db_free($query);	//free the database
@@ -135,72 +116,46 @@ class Database extends Debug{
 	}
 
 
-
-	//destroy object and close the database connection
+	//METHOD: destroy object and close the database connection
 	function __destruct(){
-	
 		//if exist a connection on the attribute variable see "connectDB" method
-		if($this->dbconnection){
-			
-			//db_disconnect($this->dbconnection);	//disconnect from the database	//no longer necessary (but kept the disconnect message)
-			
+		if($this->dbconnection && !$this->persistent){
+			// Close database connection
+			$this->dbconnection = null;
 			$this->debugMESSAGE('S', 'Database successfuly disconnected!'); //show debug message
-				
-		}else{
-			
+		}else if(!$this->persistent){
 			$this->debugMESSAGE('E', 'No database connection found!');	//show debug message
-			
 		}
-		
-		
 	} //end: method
 	
-	
-	
-	
 
-	//used for select request to the database
+	//METHOD: used for select request to the database
 	public function databaseSELECT($sql){		
 		
 		if($this->dbconnection){	
-			
 			//start: if sql
 			if(isset($sql)){
 	
-			
 				$myquery = db_query($sql, $this->dbconnection);	//select data from the database
-				
 				
 				//start: if return data
 				if( isset($myquery) ){
-						
 					//debug system
 					$this->debugMESSAGE('S', "Database request executed</b>! \"{$sql}\"");  //show debug message
 		
-					
 					//start: if did found any record
 					if($myquery != 0){
-						
 						$numrows = db_rowRows($myquery);	//get number of rows returned
-						
 						//if the number was NOT equal 0
 						if($numrows != 0){
-							
 							$counter = 0;
-							
 							while($row = db_fetch($myquery)){
-								
 								$resultarray[$counter] = $row;
-								
-								$counter++;
-							
+								$counter++;	
 							}
 						}
-						
 						$this->databaseFREE($myquery); //free the query request
-						
 					}//end: if did found any record
-						
 					//if we have an array with record lines
 					if(isset($resultarray)){			
 						return $resultarray;	//return the array
@@ -209,112 +164,69 @@ class Database extends Debug{
 						$this->debugMESSAGE('E', "Your request DID NOT returned any value"); //otherwise return 0
 						return 0;
 					}
-		
-				}
-				else
-				{
+				}	else {
 					//if did NOT found any data
 					//check debug system	
 					$this->debugMESSAGE('E', "Your request did <b>not</b> returned any value<br><i>\"{$sql}\"</i>"); //show debug message
-					
 					return 0; //return 0
-					
-				} //start: if return data
-				
-				
-			}else{
+				} //start: if return data				
+			} else {
 				//check debug system
 				$this->debugMESSAGE('E', 'Missing argument SQL query required for this method'); //show debug message			
 			}
-			
 		}else{ return 0; }//end: check connection
-	
-	
 	}//end: method
 	
 
 
-
-
-	//use for insert, update, or delete (necessary because this don't need count the number of return records)
+	//METHOD: use for insert, update, or delete (necessary because this don't need count the number of return records)
 	public function databaseMODIFY($sql){	
-		
 		if($this->dbconnection){
-			
 			//check if the argument was informed
 			if(isset($sql)){
-				
 				//try process the sql query
 				$myquery = db_query($sql, $this->dbconnection);
-			
 				//if could do it
 				if($myquery){
 					//check debug system
 					$this->debugMESSAGE('S', "Database request <b>executed</b>!<br><i>\"{$sql}\"</i>");	//show debug message
 					return 1;
-		
-				}
-				else
-				{
+				} else {
 					//check debug system
 					$this->debugMESSAGE('E', "Your request COULD NOT be completed!<br><i>\"{$sql}\"</i>"); //show debug message
-					
 					return 0; //return 0
 				}
-			
-			}else{
-			
+			} else {
 				//check debug system
 				$this->debugMESSAGE('E', 'Missing argument SQL query required for this method'); //show debug message	
-				
 			}
-		
-		}else{ return 0; }//end: check connection
-		
+		} else { 
+			return 0; 
+		}//end: check connection
 	}//end: method
 	
 	
-	//return table for current database
+	//METHOD: return table for current database
 	public function databaseTABLES(){
-		
 		switch($this->sgdb){
 			default:		
 				$tables = $this->databaseSELECT('SHOW TABLES FROM '.$this->database.';');
 		}
-		
 		return $tables;			
-		
 	}//end:databaseTABLES()
 	
 	
-	
-	//return field name and information for table passed as parameter
+	//METHOD: return field name and information for table passed as parameter
 	public function databaseFIELDS($table){
-		
 		switch($this->sgdb){
 			default:
 				$columns = $this->databaseSELECT('SHOW COLUMNS FROM '.$this->database.'.'.$table.';');		
 		}
-		
 		if($columns)
 			$this->debugMESSAGE('S', 'Returning columns for table <b>'.$table.'</b>');
 		else
 			$this->debugMESSAGE('E', 'Error trying return columns for table <b>'.$table.'</b>');
-
-		return $columns;			
-		
+			return $columns;			
 	}//end:databaseFIELDS()
-	
-	
-	//CREATE METHOD TO DEAL WITH PERSISTENT CONNECTION (EX: mysql_pconnect)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-	
-	
-	//CREATE METHOD TO DEAL WITH SQL INJECTION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-	
-	
-		
 }//end CLASS
-
-
-
 ?>
