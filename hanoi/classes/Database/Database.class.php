@@ -2,10 +2,7 @@
 /*
 	@type: CLASS
 	@author: MARIZ MELO
-	@description: Functions to deal with database connection 
-	@todo:	
-		use PDO connection
-		verify if database modules are not present (line 95)	
+	@description: PDO functions to deal with database connection 
 */	
 
 class Database extends Debug{
@@ -82,11 +79,11 @@ class Database extends Debug{
 			
 			//verify which database system will be used and includes the especific library for it
 			switch($db['sgdb']){
-				case 'mysql':	if (!extension_loaded('mysql')){
-									$this->debugMESSAGE('E', 'mysql not installed');
+				case 'mysql':	if (!extension_loaded('pdo_mysql')){
+									$this->debugMESSAGE('E', 'pdo_mysql module is not installed');
 									exit();
 								}//verifies if mysql module is installed on the system
-								include_once('./hanoi/core/Database/db_mysql.php');
+								$dns = "mysql:host=".$db['server'].";dbname=".$db['database'];
 								break;
 								
 				/*case 'oracle':	include_once('./xcore/php/Database/db_oracle.php');
@@ -106,14 +103,15 @@ class Database extends Debug{
 			}//switch
 
 
-			$this->dbconnection = db_connect($db);	//assign the connection object to the class attribute (can be used in other methods)
-			
-
-			
-			//DEBUG		
-			if($this->dbconnection)
-				$this->debugMESSAGE('S', 'Database successfuly connected!');
-			
+			try {
+    		$conn = new PDO($dns, $db['user'], $db['pass']);
+    		$this->debugMESSAGE('S', 'Database successfuly connected!');
+    		$this->dbconnection = 1;
+    		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			} catch(PDOException $e) {
+			    $this->debugMESSAGE('E', "Could not connect with Database! ".$e->getMessage());
+					die();
+			}
 			
 			
 		}else{
