@@ -2,11 +2,11 @@
 /*
 	@type: CLASS
 	@author: MARIZ MELO
-	@description: PDO functions to deal with database connection
-*/
+	@description: PDO functions to deal with database connection 
+*/	
 
 class Database extends Debug{
-
+	
 	//ATTRIBUTES
 	private $url;
 	private $user;
@@ -50,23 +50,23 @@ class Database extends Debug{
 		//if the debug system is activated - see: ./xcore/php/Debug/Debug.class.php
 		$this->debugMESSAGE('H', $HELP); //show help message
 		return '';
-	}
-
+	}	
+	
 	//METHOD: Stabilish connection with database server.
-	function databaseCONNECT($url, $user, $pass, $database, $sgdb='mysql'){
+	function databaseCONNECT($url, $user, $pass, $database, $sgdb='mysql'){	
 
 		//check if the arguments come with values
 		if(isset($url) && isset($user) && isset($pass) && isset($database)){
-
+			
 			$this->url = $url;
 			$this->user = $user;
 			$this->pass = $pass;
 			$this->database = $database;
 			$this->sgdb = $sgdb;
-
+			
 			//creates an array with the values
 			$db = array('server'=>$this->url, 'user'=>$this->user, 'pass'=>$this->pass, 'database'=>$this->database, 'interface'=>'INTERFACE', 'sgdb'=>$this->sgdb);
-
+			
 			//verify which database system will be used and includes the especific library for it
 			switch($db['sgdb']){
 				case 'mysql':	if (!extension_loaded('pdo_mysql')){
@@ -75,19 +75,19 @@ class Database extends Debug{
 								}//verifies if mysql module is installed on the system
 								$dns = "mysql:host=".$db['server'].";dbname=".$db['database'];
 								break;
-
+								
 				/*case 'oracle':	include_once('./xcore/php/Database/db_oracle.php');
 								break;
-
+								
 				case 'interbase':	include_once('./xcore/php/Database/db_interbase.php');
 								break;
-
+								
 				case 'firebird':	include_once('./xcore/php/Database/db_firebird.php');
 								break;
-
+								
 				case 'sqlserver':	include_once('./xcore/php/Database/db_sqlserver.php');
 								break;
-
+								
 				case 'sqllite':	include_once('./xcore/php/Database/db_sqllite.php');
 								break;*/
 			}//switch
@@ -103,16 +103,16 @@ class Database extends Debug{
 		}else{
 			//DEBUG
 			$this->debugMESSAGE('E', "Missing REQUIRED arguments. See INSTRUCTIONS BELOW for more details:");
-			echo $this; //call the HELP method
+			echo $this; //call the HELP method	
 		}
-
+		
 	}
-
+	
 	//METHOD: Free query used in query.
 	function databaseFREE($query){
-
+		
 		db_free($query);	//free the database
-
+		
 	}
 
 
@@ -127,31 +127,22 @@ class Database extends Debug{
 			$this->debugMESSAGE('E', 'No database connection found!');	//show debug message
 		}
 	} //end: method
-
-
-	//METHOD: used for select request to the database
-	public function databaseSELECT($sql){
-		$sth = $this->dbconnection->prepare($sql);
-		$sth->execute();
-		$result = $sth->fetchAll();
-		return $result;
-	}//end: method
-
+	
 
 	//METHOD: used for select request to the database
-	public function databaseSELECT_OLD($sql){
-
-		if($this->dbconnection){
+	public function databaseSELECT($sql){		
+		
+		if($this->dbconnection){	
 			//start: if sql
 			if(isset($sql)){
-
+	
 				$myquery = db_query($sql, $this->dbconnection);	//select data from the database
-
+				
 				//start: if return data
 				if( isset($myquery) ){
 					//debug system
 					$this->debugMESSAGE('S', "Database request executed</b>! \"{$sql}\"");  //show debug message
-
+		
 					//start: if did found any record
 					if($myquery != 0){
 						$numrows = db_rowRows($myquery);	//get number of rows returned
@@ -160,13 +151,13 @@ class Database extends Debug{
 							$counter = 0;
 							while($row = db_fetch($myquery)){
 								$resultarray[$counter] = $row;
-								$counter++;
+								$counter++;	
 							}
 						}
 						$this->databaseFREE($myquery); //free the query request
 					}//end: if did found any record
 					//if we have an array with record lines
-					if(isset($resultarray)){
+					if(isset($resultarray)){			
 						return $resultarray;	//return the array
 						$this->debugMESSAGE('S', "Your request DID NOT returned the follow values:<br>".print_r($resultarray));
 					}else{
@@ -175,21 +166,21 @@ class Database extends Debug{
 					}
 				}	else {
 					//if did NOT found any data
-					//check debug system
+					//check debug system	
 					$this->debugMESSAGE('E', "Your request did <b>not</b> returned any value<br><i>\"{$sql}\"</i>"); //show debug message
 					return 0; //return 0
-				} //start: if return data
+				} //start: if return data				
 			} else {
 				//check debug system
-				$this->debugMESSAGE('E', 'Missing argument SQL query required for this method'); //show debug message
+				$this->debugMESSAGE('E', 'Missing argument SQL query required for this method'); //show debug message			
 			}
 		}else{ return 0; }//end: check connection
 	}//end: method
-
+	
 
 
 	//METHOD: use for insert, update, or delete (necessary because this don't need count the number of return records)
-	public function databaseMODIFY($sql){
+	public function databaseMODIFY($sql){	
 		if($this->dbconnection){
 			//check if the argument was informed
 			if(isset($sql)){
@@ -207,35 +198,35 @@ class Database extends Debug{
 				}
 			} else {
 				//check debug system
-				$this->debugMESSAGE('E', 'Missing argument SQL query required for this method'); //show debug message
+				$this->debugMESSAGE('E', 'Missing argument SQL query required for this method'); //show debug message	
 			}
-		} else {
-			return 0;
+		} else { 
+			return 0; 
 		}//end: check connection
 	}//end: method
-
-
+	
+	
 	//METHOD: return table for current database
 	public function databaseTABLES(){
 		switch($this->sgdb){
-			default:
+			default:		
 				$tables = $this->databaseSELECT('SHOW TABLES FROM '.$this->database.';');
 		}
-		return $tables;
+		return $tables;			
 	}//end:databaseTABLES()
-
-
+	
+	
 	//METHOD: return field name and information for table passed as parameter
 	public function databaseFIELDS($table){
 		switch($this->sgdb){
 			default:
-				$columns = $this->databaseSELECT('SHOW COLUMNS FROM '.$this->database.'.'.$table.';');
+				$columns = $this->databaseSELECT('SHOW COLUMNS FROM '.$this->database.'.'.$table.';');		
 		}
 		if($columns)
 			$this->debugMESSAGE('S', 'Returning columns for table <b>'.$table.'</b>');
 		else
 			$this->debugMESSAGE('E', 'Error trying return columns for table <b>'.$table.'</b>');
-			return $columns;
+			return $columns;			
 	}//end:databaseFIELDS()
 }//end CLASS
 ?>
