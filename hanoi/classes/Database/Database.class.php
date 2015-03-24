@@ -119,11 +119,11 @@ class Database extends Debug{
 	//METHOD: destroy object and close the database connection
 	function __destruct(){
 		//if exist a connection on the attribute variable see "connectDB" method
-		if($this->dbconnection && !$this->persistent){
+		if($this->dbconnection && !isset($this->persistent)){
 			// Close database connection
 			$this->dbconnection = null;
 			$this->debugMESSAGE('S', 'Database successfuly disconnected!'); //show debug message
-		}else if(!$this->persistent){
+		}else if(!isset($this->persistent)){
 			$this->debugMESSAGE('E', 'No database connection found!');	//show debug message
 		}
 	} //end: method
